@@ -1,5 +1,13 @@
 package io.astronout.githubusers.presentation.home
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,9 +42,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
@@ -61,6 +71,23 @@ fun HomeScreen(
     navigator: DestinationsNavigator,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
+
+    val requestPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted: Boolean ->
+            if (!isGranted) {
+                Toast.makeText(context, "Permission Denied!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    )
+
+    LaunchedEffect(key1 = true, block = {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !context.hasNotificationPermission()) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    })
 
     LaunchedEffect(key1 = true, block = {
         viewModel.onInit(navigator)
@@ -108,14 +135,12 @@ fun HomeScreen(
             modifier = Modifier.padding(top = 24.dp)
         )
         MultiStateView(
-            modifier = Modifier.fillMaxSize().padding(top = 12.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 12.dp),
             state = uiState.state,
-            loadingLayout = {
-                Text(text = "Loading")
-            },
-            errorLayout = {
-
-            },
+            loadingLayout = {},
+            errorLayout = {},
             content = {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
@@ -134,4 +159,11 @@ fun HomeScreen(
             },
         )
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
+fun Context.hasNotificationPermission(): Boolean {
+    return ContextCompat.checkSelfPermission(this,
+        android.Manifest.permission.POST_NOTIFICATIONS
+    ) == PackageManager.PERMISSION_GRANTED
 }
