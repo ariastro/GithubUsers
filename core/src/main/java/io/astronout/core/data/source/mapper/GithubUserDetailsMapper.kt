@@ -50,7 +50,7 @@ fun UserDetailsEntity?.toDomain(): UserDetails {
         following = this?.following ?: 0,
         createdAt = this?.createdAt.orEmpty(),
         updatedAt = this?.updatedAt.orEmpty(),
-        followerList = emptyList(),
-        followingList = emptyList()
+        followerList = this?.followerList?.toDomain().orEmpty(),
+        followingList = this?.followingList?.toDomain().orEmpty()
     )
 }

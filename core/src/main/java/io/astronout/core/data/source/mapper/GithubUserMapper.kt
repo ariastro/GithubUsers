@@ -28,7 +28,7 @@ fun List<UserItemResponse>.toEntity(): List<UserEntity> {
             type = it.type.orEmpty(),
             url = it.htmlUrl.orEmpty()
         )
-    }.orEmpty()
+    }
 }
 
 fun List<UserEntity>.toDomain(): List<User> {

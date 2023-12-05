@@ -18,8 +18,8 @@ interface UserDetailsDao {
     fun getUserDetails(username: String): Flow<UserDetailsEntity?>
 
     @Query("UPDATE user_details SET follower_list = :followers WHERE login = :username")
-    fun updateFollowers(username: String, followers: List<UserEntity>)
+    suspend fun updateFollowers(username: String, followers: List<UserEntity>)
 
-    @Query("UPDATE user_details SET follower_list = :followings WHERE login = :username")
-    fun updateFollowings(username: String, followings: List<UserEntity>)
+    @Query("UPDATE user_details SET following_list = :followings WHERE login = :username")
+    suspend fun updateFollowings(username: String, followings: List<UserEntity>)
 }

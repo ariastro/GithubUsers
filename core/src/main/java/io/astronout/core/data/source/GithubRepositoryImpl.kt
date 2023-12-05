@@ -49,7 +49,7 @@ class GithubRepositoryImpl @Inject constructor(
             }
 
             override fun shouldFetch(data: UserDetails?): Boolean =
-                data == null
+                data?.id == 0
 
             override suspend fun createCall(): ApiResponse<UserDetailsResponse> =
                 remoteDataSource.getUserDetails(username)
@@ -62,7 +62,7 @@ class GithubRepositoryImpl @Inject constructor(
     override fun getUserFollowers(username: String): Flow<Resource<List<User>>> =
         object : NetworkBoundResource<List<User>, List<UserItemResponse>>() {
             override fun loadFromDB(): Flow<List<User>> {
-                return localDataSource.getUserDetail(username).map { it?.followerList.orEmpty() }
+                return localDataSource.getUserDetail(username).map { it?.followerList.orEmpty().toDomain() }
             }
 
             override fun shouldFetch(data: List<User>?): Boolean =
@@ -79,7 +79,7 @@ class GithubRepositoryImpl @Inject constructor(
     override fun getUserFollowings(username: String): Flow<Resource<List<User>>> =
         object : NetworkBoundResource<List<User>, List<UserItemResponse>>() {
             override fun loadFromDB(): Flow<List<User>> {
-                return localDataSource.getUserDetail(username).map { it?.followerList.orEmpty() }
+                return localDataSource.getUserDetail(username).map { it?.followingList.orEmpty().toDomain() }
             }
 
             override fun shouldFetch(data: List<User>?): Boolean =
@@ -89,7 +89,7 @@ class GithubRepositoryImpl @Inject constructor(
                 remoteDataSource.getFollowing(username)
 
             override suspend fun saveCallResult(data: List<UserItemResponse>) {
-                localDataSource.updateUserFollowers(username, data.toEntity())
+                localDataSource.updateUserFollowings(username, data.toEntity())
             }
         }.asFlow()
 

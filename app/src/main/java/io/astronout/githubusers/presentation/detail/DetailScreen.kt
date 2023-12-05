@@ -6,14 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Work
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,9 +34,7 @@ import io.astronout.core.utils.NetworkImage
 import io.astronout.githubusers.R
 import io.astronout.githubusers.presentation.detail.components.DetailToolbar
 import io.astronout.githubusers.presentation.detail.components.Tabs
-import io.astronout.githubusers.ui.theme.Neutral10
 import io.astronout.githubusers.ui.theme.Neutral50
-import io.astronout.githubusers.ui.theme.Neutral70
 import io.astronout.githubusers.ui.theme.Primary70
 
 @Destination
@@ -67,7 +63,7 @@ fun DetailScreen(
             }
         )
         MultiStateView(
-            state = uiState.userDetailsState,
+            state = uiState.viewState,
             loadingLayout = {},
             errorLayout = {},
             content = {
@@ -195,10 +191,12 @@ fun DetailScreen(
                 }
             }
         )
-        Tabs(
-            username = username,
-            selectedTabIndex = uiState.selectedTabIndex,
-            onTabChanged = viewModel::onEvent
-        )
+        uiState.userDetails?.let {
+            Tabs(
+                userDetails = it,
+                selectedTabIndex = uiState.selectedTabIndex,
+                onTabChanged = viewModel::onEvent
+            )
+        }
     }
 }

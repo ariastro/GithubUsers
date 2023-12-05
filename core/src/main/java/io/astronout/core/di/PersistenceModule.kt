@@ -25,7 +25,7 @@ object PersistenceModule {
             GithubDatabase::class.java,
             "github_database"
         ).fallbackToDestructiveMigration()
-            .openHelperFactory(factory)
+//            .openHelperFactory(factory)
             .build()
     }
 }

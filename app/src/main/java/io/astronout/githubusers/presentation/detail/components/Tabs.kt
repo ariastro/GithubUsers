@@ -16,6 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import io.astronout.core.domain.model.UserDetails
 import io.astronout.githubusers.R
 import io.astronout.githubusers.presentation.detail.DetailScreenEvent
 import io.astronout.githubusers.presentation.detail.followers.FollowersScreen
@@ -26,7 +27,7 @@ import io.astronout.githubusers.ui.theme.Primary70
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Tabs(
-    username: String,
+    userDetails: UserDetails,
     selectedTabIndex: Int,
     onTabChanged: (DetailScreenEvent) -> Unit,
     modifier: Modifier = Modifier
@@ -83,9 +84,9 @@ fun Tabs(
                 .weight(1F)
         ) {
             if (it == 0) {
-                FollowersScreen(username = username)
+                FollowersScreen(userDetails)
             } else {
-                FollowingsScreen(username = username)
+                FollowingsScreen(userDetails)
             }
         }
     }
