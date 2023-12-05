@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Github Users</string>
+    <string name="label_following">Followings</string>
+    <string name="label_followers">Followers</string>
+    <string name="label_repositories">Repositories</string>
 </resources>

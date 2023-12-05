@@ -2,10 +2,24 @@ package io.astronout.core.data.source.mapper
 
 import io.astronout.core.data.source.local.entity.UserEntity
 import io.astronout.core.data.source.remote.dto.GithubUserResponse
+import io.astronout.core.data.source.remote.dto.UserItemResponse
 import io.astronout.core.domain.model.User
 
 fun GithubUserResponse.toEntity(): List<UserEntity> {
     return items?.map {
+        UserEntity(
+            login = it.login.orEmpty(),
+            id = it.id ?: 0,
+            nodeId = it.nodeId.orEmpty(),
+            avatarUrl = it.avatarUrl.orEmpty(),
+            type = it.type.orEmpty(),
+            url = it.htmlUrl.orEmpty()
+        )
+    }.orEmpty()
+}
+
+fun List<UserItemResponse>.toEntity(): List<UserEntity> {
+    return map {
         UserEntity(
             login = it.login.orEmpty(),
             id = it.id ?: 0,

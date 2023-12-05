@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import io.astronout.core.domain.model.User
 import io.astronout.core.utils.NetworkImage
 import io.astronout.githubusers.ui.theme.Accent50
+import io.astronout.githubusers.ui.theme.Neutral10
 import io.astronout.githubusers.ui.theme.Primary80
 
 @Composable
@@ -42,7 +45,7 @@ fun UserItem(
         NetworkImage(
             url = user.avatarUrl,
             modifier = Modifier
-                .size(60.dp)
+                .size(70.dp)
                 .clip(CircleShape)
         )
         Column(
@@ -58,6 +61,10 @@ fun UserItem(
                 text = user.url,
                 style = MaterialTheme.typography.labelMedium,
                 color = Accent50
+            )
+            Divider(
+                color = Neutral10,
+                modifier = Modifier.fillMaxWidth().height(1.dp).padding(top = 20.dp)
             )
         }
         Icon(

@@ -108,6 +108,7 @@ fun HomeScreen(
             modifier = Modifier.padding(top = 24.dp)
         )
         MultiStateView(
+            modifier = Modifier.fillMaxSize().padding(top = 12.dp),
             state = uiState.state,
             loadingLayout = {
                 Text(text = "Loading")
@@ -131,7 +132,6 @@ fun HomeScreen(
                     }
                 }
             },
-            modifier = Modifier.padding(top = 12.dp)
         )
     }
 }

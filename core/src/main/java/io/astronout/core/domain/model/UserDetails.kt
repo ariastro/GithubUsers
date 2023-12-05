@@ -9,7 +9,7 @@ data class UserDetails(
     val name: String,
     val company: String,
     val blog: String,
-    val location: Any,
+    val location: String,
     val email: Any,
     val bio: String,
     val publicRepos: Int,
@@ -17,5 +17,7 @@ data class UserDetails(
     val followers: Int,
     val following: Int,
     val createdAt: String,
-    val updatedAt: String
+    val updatedAt: String,
+    val followerList: List<User>,
+    val followingList: List<User>
 )

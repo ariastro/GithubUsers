@@ -6,5 +6,5 @@ import io.astronout.core.domain.model.ViewState
 data class HomeUIState(
     val users: List<User> = emptyList(),
     val query: String = "",
-    val state: ViewState = ViewState.Loading
+    val state: ViewState = ViewState.Content
 )

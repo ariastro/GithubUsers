@@ -13,7 +13,7 @@ import io.astronout.core.data.source.local.entity.UserEntity
     version = 1,
     exportSchema = false
 )
-@TypeConverters(StringTypeConverter::class, DateTypeConverter::class)
+@TypeConverters(UsersTypeConverter::class)
 abstract class GithubDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun userDetailsDao(): UserDetailsDao

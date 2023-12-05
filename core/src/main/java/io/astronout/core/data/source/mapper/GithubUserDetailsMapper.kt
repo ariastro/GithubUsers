@@ -25,7 +25,9 @@ fun UserDetailsResponse.toEntity(): UserDetailsEntity {
         followers = followers ?: 0,
         following = following ?: 0,
         createdAt = createdAt.orEmpty(),
-        updatedAt = updatedAt.orEmpty()
+        updatedAt = updatedAt.orEmpty(),
+        followerList = emptyList(),
+        followingList = emptyList()
     )
 }
 
@@ -47,6 +49,8 @@ fun UserDetailsEntity?.toDomain(): UserDetails {
         followers = this?.followers ?: 0,
         following = this?.following ?: 0,
         createdAt = this?.createdAt.orEmpty(),
-        updatedAt = this?.updatedAt.orEmpty()
+        updatedAt = this?.updatedAt.orEmpty(),
+        followerList = emptyList(),
+        followingList = emptyList()
     )
 }

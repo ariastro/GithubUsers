@@ -3,6 +3,7 @@ package io.astronout.core.data.source.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import io.astronout.core.domain.model.User
 
 @Entity(tableName = "user_details")
 data class UserDetailsEntity(
@@ -39,5 +40,9 @@ data class UserDetailsEntity(
     @ColumnInfo(name = "created_at")
     val createdAt: String,
     @ColumnInfo(name = "updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+    @ColumnInfo(name = "follower_list")
+    val followerList: List<User>,
+    @ColumnInfo(name = "following_list")
+    val followingList: List<User>
 )

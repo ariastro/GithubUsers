@@ -9,7 +9,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
-import io.astronout.githubusers.presentation.home.NavGraphs
+import io.astronout.githubusers.presentation.NavGraphs
 import io.astronout.githubusers.ui.theme.GithubUsersTheme
 
 @AndroidEntryPoint

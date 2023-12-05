@@ -9,5 +9,7 @@ interface GithubRepository {
 
     fun searchGithubUsers(query: String): Flow<Resource<List<User>>>
     fun getUserDetails(username: String): Flow<Resource<UserDetails>>
+    fun getUserFollowers(username: String): Flow<Resource<List<User>>>
+    fun getUserFollowings(username: String): Flow<Resource<List<User>>>
 
 }

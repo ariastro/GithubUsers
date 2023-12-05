@@ -2,11 +2,13 @@ package io.astronout.githubusers.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.util.query
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.astronout.core.domain.model.ViewState
 import io.astronout.core.domain.usecase.SearchUsersUsecase
 import io.astronout.core.vo.Resource
+import io.astronout.githubusers.presentation.destinations.DetailScreenDestination
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,7 +52,9 @@ class HomeViewModel @Inject constructor(
             if (query.isNotEmpty()) {
                 searchGames(query)
             } else {
-                clearSearch()
+                _uiState.update {
+                    it.copy(users = emptyList(), state = ViewState.Content)
+                }
             }
         }
     }
@@ -78,13 +82,11 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun clearSearch() {
-        _uiState.update {
-            it.copy(users = emptyList(), state = ViewState.Content)
-        }
+        onSearchQueryChanged("")
     }
 
     private fun navigateToDetailScreen(username: String) {
-
+        navigator.navigate(DetailScreenDestination(username))
     }
 
 }

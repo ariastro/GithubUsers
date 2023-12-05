@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
@@ -20,7 +19,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import io.astronout.githubusers.R
 import io.astronout.githubusers.presentation.home.HomeScreenEvent
 import io.astronout.githubusers.ui.theme.Neutral10
 import io.astronout.githubusers.ui.theme.Neutral40
@@ -47,7 +48,7 @@ fun SearchField(
         },
         leadingIcon = {
             Icon(
-                imageVector = Icons.Default.Search,
+                painterResource(id = R.drawable.ic_search),
                 contentDescription = null,
                 modifier = Modifier.size(32.dp)
             )

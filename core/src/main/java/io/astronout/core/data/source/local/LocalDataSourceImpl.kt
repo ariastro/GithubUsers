@@ -25,4 +25,12 @@ class LocalDataSourceImpl @Inject constructor(
         return appDatabase.userDetailsDao().getUserDetails(username)
     }
 
+    override suspend fun updateUserFollowers(username: String, followers: List<UserEntity>) {
+        return appDatabase.userDetailsDao().updateFollowers(username, followers)
+    }
+
+    override suspend fun updateUserFollowings(username: String, followings: List<UserEntity>) {
+        return appDatabase.userDetailsDao().updateFollowings(username, followings)
+    }
+
 }

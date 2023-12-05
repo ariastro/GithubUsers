@@ -11,7 +11,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.astronout.core.BuildConfig
-import io.astronout.core.data.source.remote.other.AuthInterceptor
 import io.astronout.core.data.source.remote.web.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -46,7 +45,6 @@ object NetworkModule {
     fun provideOkHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
         return if (BuildConfig.DEBUG) {
             OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor())
                 .addInterceptor(chuckerInterceptor)
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .connectTimeout(120, TimeUnit.SECONDS)
@@ -54,7 +52,6 @@ object NetworkModule {
                 .build()
         } else {
             OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor())
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()

@@ -7,6 +7,7 @@ import io.astronout.core.data.source.mapper.toEntity
 import io.astronout.core.data.source.remote.RemoteDataSource
 import io.astronout.core.data.source.remote.dto.GithubUserResponse
 import io.astronout.core.data.source.remote.dto.UserDetailsResponse
+import io.astronout.core.data.source.remote.dto.UserItemResponse
 import io.astronout.core.domain.model.User
 import io.astronout.core.domain.model.UserDetails
 import io.astronout.core.domain.repository.GithubRepository
@@ -55,6 +56,40 @@ class GithubRepositoryImpl @Inject constructor(
 
             override suspend fun saveCallResult(data: UserDetailsResponse) {
                 localDataSource.insertUserDetails(data.toEntity())
+            }
+        }.asFlow()
+
+    override fun getUserFollowers(username: String): Flow<Resource<List<User>>> =
+        object : NetworkBoundResource<List<User>, List<UserItemResponse>>() {
+            override fun loadFromDB(): Flow<List<User>> {
+                return localDataSource.getUserDetail(username).map { it?.followerList.orEmpty() }
+            }
+
+            override fun shouldFetch(data: List<User>?): Boolean =
+                data.isNullOrEmpty()
+
+            override suspend fun createCall(): ApiResponse<List<UserItemResponse>> =
+                remoteDataSource.getFollowers(username)
+
+            override suspend fun saveCallResult(data: List<UserItemResponse>) {
+                localDataSource.updateUserFollowers(username, data.toEntity())
+            }
+        }.asFlow()
+
+    override fun getUserFollowings(username: String): Flow<Resource<List<User>>> =
+        object : NetworkBoundResource<List<User>, List<UserItemResponse>>() {
+            override fun loadFromDB(): Flow<List<User>> {
+                return localDataSource.getUserDetail(username).map { it?.followerList.orEmpty() }
+            }
+
+            override fun shouldFetch(data: List<User>?): Boolean =
+                data.isNullOrEmpty()
+
+            override suspend fun createCall(): ApiResponse<List<UserItemResponse>> =
+                remoteDataSource.getFollowing(username)
+
+            override suspend fun saveCallResult(data: List<UserItemResponse>) {
+                localDataSource.updateUserFollowers(username, data.toEntity())
             }
         }.asFlow()
 
