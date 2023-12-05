@@ -14,6 +14,8 @@ data class UserEntity(
     val nodeId: String,
     @ColumnInfo(name = "avatar_url")
     val avatarUrl: String,
+    @ColumnInfo(name = "url")
+    val url: String,
     @ColumnInfo(name = "type")
     val type: String,
 )

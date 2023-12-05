@@ -3,7 +3,7 @@ package io.astronout.core.data.source.remote
 import com.skydoves.sandwich.ApiResponse
 import io.astronout.core.data.source.remote.dto.GithubUserResponse
 import io.astronout.core.data.source.remote.dto.UserDetailsResponse
-import io.astronout.core.data.source.remote.dto.UserItem
+import io.astronout.core.data.source.remote.dto.UserItemResponse
 import io.astronout.core.data.source.remote.web.ApiService
 import javax.inject.Inject
 
@@ -17,11 +17,11 @@ class RemoteDataSource @Inject constructor(private val api: ApiService) : ApiSer
         return api.getUserDetails(username)
     }
 
-    override suspend fun getFollowers(username: String): ApiResponse<List<UserItem>> {
+    override suspend fun getFollowers(username: String): ApiResponse<List<UserItemResponse>> {
         return api.getFollowers(username)
     }
 
-    override suspend fun getFollowing(username: String): ApiResponse<List<UserItem>> {
+    override suspend fun getFollowing(username: String): ApiResponse<List<UserItemResponse>> {
         return api.getFollowing(username)
     }
 

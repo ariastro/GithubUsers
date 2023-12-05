@@ -9,5 +9,6 @@ data class User(
     val id: Int,
     val nodeId: String,
     val avatarUrl: String,
+    val url: String,
     val type: String,
 ): Parcelable

@@ -10,5 +10,5 @@ data class GithubUserResponse(
     @Json(name = "incomplete_results")
     val incompleteResults: Boolean? = null,
     @Json(name = "items")
-    val items: List<UserItem>? = null
+    val items: List<UserItemResponse>? = null
 )

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class UserItem(
+data class UserItemResponse(
     @Json(name = "login")
     val login: String? = null,
     @Json(name = "id")

@@ -12,6 +12,7 @@ fun GithubUserResponse.toEntity(): List<UserEntity> {
             nodeId = it.nodeId.orEmpty(),
             avatarUrl = it.avatarUrl.orEmpty(),
             type = it.type.orEmpty(),
+            url = it.htmlUrl.orEmpty()
         )
     }.orEmpty()
 }
@@ -23,7 +24,8 @@ fun List<UserEntity>.toDomain(): List<User> {
             id = it.id,
             nodeId = it.nodeId,
             avatarUrl = it.avatarUrl,
-            type = it.type
+            type = it.type,
+            url = it.url
         )
     }
 }
