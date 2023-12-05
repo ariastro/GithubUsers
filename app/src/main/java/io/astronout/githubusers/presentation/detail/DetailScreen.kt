@@ -30,7 +30,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.astronout.core.components.Gap
 import io.astronout.core.components.MultiStateView
-import io.astronout.core.utils.NetworkImage
+import io.astronout.core.components.NetworkImage
 import io.astronout.githubusers.R
 import io.astronout.githubusers.presentation.detail.components.DetailToolbar
 import io.astronout.githubusers.presentation.detail.components.Tabs

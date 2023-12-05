@@ -32,6 +32,7 @@ accompanist                     = "0.28.0"
 leak-canary                     = "2.12"
 sql-clipper                     = "4.4.0"
 sqlite-ktx                      = "2.1.0"
+landscapist-glide               = "2.2.12"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -94,6 +95,8 @@ accompanist = { module = "com.google.accompanist:accompanist-systemuicontroller"
 leak-canary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leak-canary" }
 sql-clipper = { module = "net.zetetic:android-database-sqlcipher", version.ref = "sql-clipper" }
 sqlite-ktx = { module = "androidx.sqlite:sqlite-ktx", version.ref = "sqlite-ktx" }
+
+landscapist-glide = { module = "com.github.skydoves:landscapist-glide", version.ref = "landscapist-glide" }
 
 [plugins]
 application = { id = "com.android.application", version.ref = "agp"}

@@ -22,7 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.astronout.core.domain.model.User
-import io.astronout.core.utils.NetworkImage
+import io.astronout.core.components.NetworkImage
 import io.astronout.githubusers.ui.theme.Accent50
 import io.astronout.githubusers.ui.theme.Neutral10
 import io.astronout.githubusers.ui.theme.Primary80

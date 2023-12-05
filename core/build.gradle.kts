@@ -97,7 +97,8 @@ dependencies {
     api(libs.bundles.room)
     ksp(libs.room.compiler)
 
-    api(libs.coil)
+    implementation(libs.coil)
+    implementation(libs.landscapist.glide)
 
     api(libs.bundles.media3)
 
