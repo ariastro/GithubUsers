@@ -11,7 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.astronout.core.BuildConfig
-import io.astronout.core.data.source.remote.AuthInterceptor
+import io.astronout.core.data.source.remote.other.AuthInterceptor
 import io.astronout.core.data.source.remote.web.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

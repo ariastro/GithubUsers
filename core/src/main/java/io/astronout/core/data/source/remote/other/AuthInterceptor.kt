@@ -1,4 +1,4 @@
-package io.astronout.core.data.source.remote
+package io.astronout.core.data.source.remote.other
 
 import io.astronout.core.BuildConfig
 import okhttp3.Interceptor
