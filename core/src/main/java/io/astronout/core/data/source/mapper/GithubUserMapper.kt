@@ -11,7 +11,7 @@ fun GithubUserResponse.toEntity(): List<UserEntity> {
             id = it.id ?: 0,
             nodeId = it.nodeId.orEmpty(),
             avatarUrl = it.avatarUrl.orEmpty(),
-            type = it.type.orEmpty()
+            type = it.type.orEmpty(),
         )
     }.orEmpty()
 }

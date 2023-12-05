@@ -6,11 +6,12 @@ import io.astronout.core.data.source.mapper.toDomain
 import io.astronout.core.data.source.mapper.toEntity
 import io.astronout.core.data.source.remote.RemoteDataSource
 import io.astronout.core.data.source.remote.dto.GithubUserResponse
+import io.astronout.core.data.source.remote.dto.UserDetailsResponse
 import io.astronout.core.domain.model.User
+import io.astronout.core.domain.model.UserDetails
 import io.astronout.core.domain.repository.GithubRepository
 import io.astronout.core.vo.Resource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -35,6 +36,25 @@ class GithubRepositoryImpl @Inject constructor(
 
             override suspend fun saveCallResult(data: GithubUserResponse) {
                 localDataSource.insertUsers(data.toEntity())
+            }
+        }.asFlow()
+
+    override fun getUserDetails(username: String): Flow<Resource<UserDetails>> =
+        object : NetworkBoundResource<UserDetails, UserDetailsResponse>() {
+            override fun loadFromDB(): Flow<UserDetails> {
+                return localDataSource.getUserDetail(username).map {
+                    it.toDomain()
+                }
+            }
+
+            override fun shouldFetch(data: UserDetails?): Boolean =
+                data == null
+
+            override suspend fun createCall(): ApiResponse<UserDetailsResponse> =
+                remoteDataSource.getUserDetails(username)
+
+            override suspend fun saveCallResult(data: UserDetailsResponse) {
+                localDataSource.insertUserDetails(data.toEntity())
             }
         }.asFlow()
 
