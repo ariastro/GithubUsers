@@ -27,7 +27,6 @@ moshi                           = "1.14.0"
 chucker                         = "4.0.0"
 lifecycle                       = "2.6.2"
 coil                            = "2.5.0"
-media3                          = "1.1.1"
 accompanist                     = "0.28.0"
 leak-canary                     = "2.12"
 sql-clipper                     = "4.4.0"
@@ -87,9 +86,6 @@ lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", versi
 
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
-media-exo-player = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
-media-ui = { module = "androidx.media3:media3-ui", version.ref = "media3" }
-
 accompanist = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 
 leak-canary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leak-canary" }
@@ -110,4 +106,3 @@ networking = ["retrofit", "retrofit-moshi", "okhttp", "okhttp-logging", "sandwic
 room = ["room-ktx", "room-paging", "room-runtime"]
 moshi = ["moshi", "moshi-kotlin"]
 lifecycle = ["lifecycle-ktx", "livedata", "lifecycle-runtime"]
-media3 = ["media-exo-player", "media-ui"]

@@ -100,8 +100,6 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.landscapist.glide)
 
-    api(libs.bundles.media3)
-
     api(libs.accompanist)
 
     api(libs.appcompat)
