@@ -17,8 +17,14 @@ GithubUsers demonstrates modern Android development with Clean Architecture usin
 </p>
 </div>
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/ariastro/GithubUsers)
 
+## Screenshots
+<table>
+  <tr>
+    <td> <img src="https://github.com/ariastro/GithubUsers/blob/main/preview/preview1.png"  alt="1" height = 500px ></td>
+    <td><img src="https://github.com/ariastro/GithubUsers/blob/main/preview/preview2.png" alt="2" height = 500px></td>
+   </tr> 
+</table>
 
 ## Download
 Go to the [Releases](https://github.com/ariastro/GithubUsers/releases) to download the latest APK.
@@ -120,5 +126,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-[product-screenshot]: previews/preview.png
