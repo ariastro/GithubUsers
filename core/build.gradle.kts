@@ -100,6 +100,8 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.landscapist.glide)
 
+    api(libs.compose.lottie)
+
     api(libs.accompanist)
 
     api(libs.appcompat)

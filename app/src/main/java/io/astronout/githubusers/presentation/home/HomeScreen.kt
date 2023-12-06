@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -34,6 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import io.astronout.core.components.LottieAnimationView
 import io.astronout.core.components.MultiStateView
 import io.astronout.core.utils.hasNotificationPermission
 import io.astronout.core.utils.showToast
@@ -118,7 +120,16 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(top = 12.dp),
             state = uiState.state,
-            loadingLayout = {},
+            loadingLayout = {
+                LottieAnimationView(
+                    animation = R.raw.loading,
+                    modifier = Modifier
+                        .height(400.dp)
+                        .fillMaxWidth()
+                        .align(Alignment.TopCenter)
+                        .padding(top = 50.dp)
+                )
+            },
             errorLayout = {},
             content = {
                 LazyColumn(
